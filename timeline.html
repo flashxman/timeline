@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline de l'Histoire de l'Humanité</title>
+    <style>
+        /* Styles généraux */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background-color: #2c3e50;
+            color: white;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        /* Styles pour la timeline */
+        .timeline-controls {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .timeline-controls button {
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .timeline-controls button:hover {
+            background-color: #2980b9;
+        }
+        
+        .timeline-controls button.active {
+            background-color: #2c3e50;
+        }
+        
+        .timeline-container {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background-color: #3498db;
+            transform: translateX(-50%);
+        }
+        
+        .timeline-events {
+            position: relative;
+        }
+        
+        .timeline-event {
+            position: relative;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        
+        .timeline-event.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-event:nth-child(odd) {
+            margin-left: 50%;
+            padding-left: 30px;
+        }
+        
+        .timeline-event:nth-child(even) {
+            margin-right: 50%;
+            padding-right: 30px;
+            text-align: right;
+        }
+        
+        .timeline-event:before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid #3498db;
+            border-radius: 50%;
+            top: 0;
+        }
+        
+        .timeline-event:nth-child(odd):before {
+            left: -10px;
+        }
+        
+        .timeline-event:nth-child(even):before {
+            right: -10px;
+        }
+        
+        .event-date {
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 5px;
+        }
+        
+        .event-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .event-description {
+            margin-bottom: 10px;
+        }
+        
+        /* Styles pour les catégories */
+        .timeline-event.Préhistoire:before {
+            border-color: #e74c3c;
+        }
+        
+        .timeline-event.Antiquité:before {
+            border-color: #f39c12;
+        }
+        
+        .timeline-event.Moyen-Âge:before {
+            border-color: #27ae60;
+        }
+        
+        .timeline-event.Époque-moderne:before {
+            border-color: #9b59b6;
+        }
+        
+        .timeline-event.Époque-contemporaine:before {
+            border-color: #3498db;
+        }
+        
+        .timeline-event.Préhistoire .event-date {
+            color: #e74c3c;
+        }
+        
+        .timeline-event.Antiquité .event-date {
+            color: #f39c12;
+        }
+        
+        .timeline-event.Moyen-Âge .event-date {
+            color: #27ae60;
+        }
+        
+        .timeline-event.Époque-moderne .event-date {
+            color: #9b59b6;
+        }
+        
+        .timeline-event.Époque-contemporaine .event-date {
+            color: #3498db;
+        }
+        
+        /* Légende */
+        .timeline-legend {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+        }
+        
+        .legend-color {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        
+        .legend-color.Préhistoire {
+            background-color: #e74c3c;
+        }
+        
+        .legend-color.Antiquité {
+            background-color: #f39c12;
+        }
+        
+        .legend-color.Moyen-Âge {
+            background-color: #27ae60;
+        }
+        
+        .legend-color.Époque-moderne {
+            background-color: #9b59b6;
+        }
+        
+        .legend-color.Époque-contemporaine {
+            background-color: #3498db;
+        }
+        
+        /* Zoom et navigation */
+        .zoom-controls {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .zoom-controls button {
+            padding: 5px 10px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+        
+        .zoom-controls button:hover {
+            background-color: #1a2530;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 30px;
+            }
+            
+            .timeline-event:nth-child(odd),
+            .timeline-event:nth-child(even) {
+                margin-left: 60px;
+                padding-left: 20px;
+                margin-right: 0;
+                padding-right: 0;
+                text-align: left;
+            }
+            
+            .timeline-event:nth-child(odd):before,
+            .timeline-event:nth-child(even):before {
+                left: -10px;
+                right: auto;
+            }
+        }
+        
+        /* Modal pour les détails */
+        .event-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .close-modal {
+            float: right;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .modal-title {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .modal-date {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .modal-description {
+            margin-bottom: 15px;
+        }
+        
+        .modal-category {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            color: white;
+            font-size: 0.8rem;
+        }
+        
+        .modal-category.Préhistoire {
+            background-color: #e74c3c;
+        }
+        
+        .modal-category.Antiquité {
+            background-color: #f39c12;
+        }
+        
+        .modal-category.Moyen-Âge {
+            background-color: #27ae60;
+        }
+        
+        .modal-category.Époque-moderne {
+            background-color: #9b59b6;
+        }
+        
+        .modal-category.Époque-contemporaine {
+            background-color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Timeline de l'Histoire de l'Humanité</h1>
+        <p>De 300 000 av. J.-C. à nos jours</p>
+    </header>
+    
+    <div class="container">
+        <div class="timeline-legend">
+            <div class="legend-item">
+                <div class="legend-color Préhistoire"></div>
+                <span>Préhistoire</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color Antiquité"></div>
+                <span>Antiquité</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color Moyen-Âge"></div>
+                <span>Moyen Âge</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color Époque-moderne"></div>
+                <span>Époque moderne</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color Époque-contemporaine"></div>
+                <span>Époque contemporaine</span>
+            </div>
+        </div>
+        
+        <div class="timeline-controls">
+            <button id="all-periods" class="active">Toutes les périodes</button>
+            <button id="prehistoire">Préhistoire</button>
+            <button id="antiquite">Antiquité</button>
+            <button id="moyen-age">Moyen Âge</button>
+            <button id="epoque-moderne">Époque moderne</button>
+            <button id="epoque-contemporaine">Époque contemporaine</button>
+        </div>
+        
+        <div class="zoom-controls">
+            <button id="zoom-in">Zoom +</button>
+            <button id="zoom-out">Zoom -</button>
+            <button id="reset-zoom">Réinitialiser</button>
+        </div>
+        
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+            <div class="timeline-events" id="timeline-events">
+                <!-- Les événements seront ajoutés ici par JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <div class="event-modal" id="event-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal">&times;</span>
+            <h2 class="modal-title" id="modal-title"></h2>
+            <div class="modal-date" id="modal-date"></div>
+            <div class="modal-description" id="modal-description"></div>
+            <div class="modal-category" id="modal-category"></div>
+        </div>
+    </div>
+    
+    <script>
+        // Données des événements historiques
+        const timelineEvents = [
+  {
+    "date": "-300000",
+    "title": "Apparition d'Homo sapiens",
+    "description": "Apparition d'Homo sapiens en Afrique (site de Djebel Irhoud au Maroc)",
+    "category": "Préhistoire"
+  },
+  {
+    "date": "-200000",
+    "title": "Utilisation contrôlée du feu",
+    "description": "Début de l'utilisation contrôlée du feu par Homo sapiens",
+    "category": "Préhistoire"
+  },
+  {
+    "date": "-70000",
+    "title": "Migrations hors d'Afrique",
+    "description": "Premières migrations d'Homo sapiens hors d'Afrique",
+    "category": "Préhistoire"
+  },
+  {
+    "date": "-40000",
+    "title": "Art pariétal",
+    "description": "Début de l'art pariétal (grottes de Chauvet, Lascaux, Altamira)",
+    "category": "Préhistoire"
+  },
+  {
+    "date": "-10000",
+    "title": "Début du Néolithique",
+    "description": "Début du Néolithique au Proche-Orient",
+    "category": "Préhistoire"
+  },
+  {
+    "date": "-9500",
+    "title": "Premières traces d'agriculture",
+    "description": "Premières traces d'agriculture (culture de céréales sauvages) à Jéricho",
+    "category": "Préhistoire"
+  },
+  {
+    "date": "-3500",
+    "title": "Invention de l'écriture",
+    "description": "Invention de l'écriture en Mésopotamie (pictogrammes sumériens)",
+    "category": "Antiquité"
+  },
+  {
+    "date": "-3100",
+    "title": "Unification de l'Égypte",
+    "description": "Unification de l'Égypte sous le roi Narmer (ou Ménès)",
+    "category": "Antiquité"
+  },
+  {
+    "date": "-2700",
+    "title": "Construction des pyramides",
+    "description": "Ancien Empire égyptien, construction des grandes pyramides (Khéops, Khéphren, Mykérinos)",
+    "category": "Antiquité"
+  },
+  {
+    "date": "-1792",
+    "title": "Code d'Hammourabi",
+    "description": "Règne d'Hammourabi à Babylone, premier code de lois écrites",
+    "category": "Antiquité"
+  },
+  {
+    "date": "-776",
+    "title": "Premiers Jeux olympiques",
+    "description": "Premiers Jeux olympiques (date traditionnelle)",
+    "category": "Antiquité"
+  },
+  {
+    "date": "-753",
+    "title": "Fondation de Rome",
+    "description": "Fondation légendaire de Rome",
+    "category": "Antiquité"
+  },
+  {
+    "date": "-509",
+    "title": "République romaine",
+    "description": "Fin de la monarchie romaine, instauration de la République",
+    "category": "Antiquité"
+  },
+  {
+    "date": "-336",
+    "title": "Alexandre le Grand",
+    "description": "Début du règne d'Alexandre le Grand",
+    "category": "Antiquité"
+  },
+  {
+    "date": "-27",
+    "title": "Empire romain",
+    "description": "Octave devient Auguste, premier empereur romain",
+    "category": "Antiquité"
+  },
+  {
+    "date": "0",
+    "title": "Naissance de Jésus-Christ",
+    "description": "Naissance de Jésus-Christ (date conventionnelle)",
+    "category": "Antiquité"
+  },
+  {
+    "date": "79",
+    "title": "Éruption du Vésuve",
+    "description": "Éruption du Vésuve, destruction de Pompéi et Herculanum",
+    "category": "Antiquité"
+  },
+  {
+    "date": "313",
+    "title": "Édit de Milan",
+    "description": "Édit de Milan, légalisation du christianisme par Constantin",
+    "category": "Antiquité"
+  },
+  {
+    "date": "395",
+    "title": "Division de l'Empire romain",
+    "description": "Division définitive de l'Empire romain entre Orient et Occident",
+    "category": "Antiquité"
+  },
+  {
+    "date": "476",
+    "title": "Chute de l'Empire romain d'Occident",
+    "description": "Déposition de Romulus Augustule, dernier empereur romain d'Occident",
+    "category": "Moyen Âge"
+  },
+  {
+    "date": "496",
+    "title": "Baptême de Clovis",
+    "description": "Baptême de Clovis, conversion au christianisme",
+    "category": "Moyen Âge"
+  },
+  {
+    "date": "622",
+    "title": "Hégire",
+    "description": "Hégire de Mahomet, début du calendrier musulman",
+    "category": "Moyen Âge"
+  },
+  {
+    "date": "732",
+    "title": "Bataille de Poitiers",
+    "description": "Bataille de Poitiers, Charles Martel arrête l'avancée musulmane en Europe",
+    "category": "Moyen Âge"
+  },
+  {
+    "date": "800",
+    "title": "Couronnement de Charlemagne",
+    "description": "Couronnement de Charlemagne comme empereur d'Occident par le pape Léon III",
+    "category": "Moyen Âge"
+  },
+  {
+    "date": "1066",
+    "title": "Bataille d'Hastings",
+    "description": "Bataille d'Hastings, conquête normande de l'Angleterre par Guillaume le Conquérant",
+    "category": "Moyen Âge"
+  },
+  {
+    "date": "1095",
+    "title": "Première croisade",
+    "description": "Concile de Clermont, appel à la première croisade par le pape Urbain II",
+    "category": "Moyen Âge"
+  },
+  {
+    "date": "1215",
+    "title": "Magna Carta",
+    "description": "Magna Carta en Angleterre, limitation du pouvoir royal",
+    "category": "Moyen Âge"
+  },
+  {
+    "date": "1347",
+    "title": "Peste noire",
+    "description": "Peste noire en Europe, perte d'un tiers de la population européenne",
+    "category": "Moyen Âge"
+  },
+  {
+    "date": "1429",
+    "title": "Jeanne d'Arc",
+    "description": "Jeanne d'Arc libère Orléans",
+    "category": "Moyen Âge"
+  },
+  {
+    "date": "1453",
+    "title": "Chute de Constantinople",
+    "description": "Chute de Constantinople, fin de l'Empire byzantin",
+    "category": "Moyen Âge"
+  },
+  {
+    "date": "1492",
+    "title": "Découverte de l'Amérique",
+    "description": "Christophe Colomb atteint l'Amérique",
+    "category": "Époque moderne"
+  },
+  {
+    "date": "1517",
+    "title": "Réforme protestante",
+    "description": "Martin Luther affiche ses 95 thèses, début de la Réforme protestante",
+    "category": "Époque moderne"
+  },
+  {
+    "date": "1543",
+    "title": "Théorie héliocentrique",
+    "description": "Publication de \"De revolutionibus orbium coelestium\" de Copernic (théorie héliocentrique)",
+    "category": "Époque moderne"
+  },
+  {
+    "date": "1610",
+    "title": "Assassinat d'Henri IV",
+    "description": "Assassinat d'Henri IV, Louis XIII devient roi de France",
+    "category": "Époque moderne"
+  },
+  {
+    "date": "1643",
+    "title": "Règne de Louis XIV",
+    "description": "Début du règne de Louis XIV, apogée de l'absolutisme en France",
+    "category": "Époque moderne"
+  },
+  {
+    "date": "1687",
+    "title": "Principia Mathematica",
+    "description": "Publication des \"Principia Mathematica\" de Newton",
+    "category": "Époque moderne"
+  },
+  {
+    "date": "1751",
+    "title": "L'Encyclopédie",
+    "description": "Publication de l'Encyclopédie de Diderot et d'Alembert",
+    "category": "Époque moderne"
+  },
+  {
+    "date": "1776",
+    "title": "Indépendance des États-Unis",
+    "description": "Déclaration d'indépendance des États-Unis",
+    "category": "Époque moderne"
+  },
+  {
+    "date": "1789",
+    "title": "Révolution française",
+    "description": "Prise de la Bastille, début de la Révolution française",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "1804",
+    "title": "Napoléon empereur",
+    "description": "Sacre de Napoléon Ier comme empereur des Français",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "1815",
+    "title": "Congrès de Vienne",
+    "description": "Congrès de Vienne, réorganisation de l'Europe après Napoléon",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "1848",
+    "title": "Printemps des peuples",
+    "description": "\"Printemps des peuples\", vague de révolutions en Europe",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "1859",
+    "title": "Théorie de l'évolution",
+    "description": "Publication de \"L'Origine des espèces\" de Charles Darwin",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "1885",
+    "title": "Partage de l'Afrique",
+    "description": "Conférence de Berlin, partage de l'Afrique entre puissances européennes",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "1914",
+    "title": "Première Guerre mondiale",
+    "description": "Début de la Première Guerre mondiale",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "1917",
+    "title": "Révolution russe",
+    "description": "Révolution russe, chute du tsar et prise du pouvoir par les bolcheviks",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "1929",
+    "title": "Grande Dépression",
+    "description": "Krach boursier de Wall Street, début de la Grande Dépression",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "1939",
+    "title": "Seconde Guerre mondiale",
+    "description": "Début de la Seconde Guerre mondiale",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "1945",
+    "title": "Fin de la Seconde Guerre mondiale",
+    "description": "Fin de la Seconde Guerre mondiale, création de l'ONU",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "1947",
+    "title": "Guerre froide",
+    "description": "Début de la Guerre froide entre les États-Unis et l'URSS",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "1957",
+    "title": "Traité de Rome",
+    "description": "Traité de Rome, création de la Communauté économique européenne",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "1969",
+    "title": "Premier pas sur la Lune",
+    "description": "Premiers pas de l'homme sur la Lune (Neil Armstrong)",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "1989",
+    "title": "Chute du mur de Berlin",
+    "description": "Chute du mur de Berlin",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "1991",
+    "title": "Fin de l'URSS",
+    "description": "Dissolution de l'URSS, fin de la Guerre froide",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2001",
+    "title": "Attentats du 11 septembre",
+    "description": "Attentats du 11 septembre aux États-Unis",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2008",
+    "title": "Crise financière mondiale",
+    "description": "Crise financière mondiale",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2019",
+    "title": "Pandémie de COVID-19",
+    "description": "Début de la pandémie de COVID-19",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2022",
+    "title": "Invasion de l'Ukraine",
+    "description": "Invasion de l'Ukraine par la Russie",
+    "category": "Époque contemporaine"
+  }
+];
+
+        // Fonction pour formater les dates
+        function formatDate(dateStr) {
+            const date = parseInt(dateStr);
+            if (date < 0) {
+                return Math.abs(date) + " av. J.-C.";
+            } else if (date === 0) {
+                return "An 0";
+            } else {
+                return date + " ap. J.-C.";
+            }
+        }
+        
+        // Fonction pour créer les éléments de la timeline
+        function createTimelineEvents() {
+            const timelineEventsContainer = document.getElementById('timeline-events');
+            timelineEventsContainer.innerHTML = '';
+            
+            timelineEvents.forEach((event, index) => {
+                const eventElement = document.createElement('div');
+                eventElement.className = `timeline-event ${event.category.replace(' ', '-')}`;
+                eventElement.setAttribute('data-category', event.category);
+                eventElement.setAttribute('data-index', index);
+                
+                const dateElement = document.createElement('div');
+                dateElement.className = 'event-date';
+                dateElement.textContent = formatDate(event.date);
+                
+                const titleElement = document.createElement('div');
+                titleElement.className = 'event-title';
+                titleElement.textContent = event.title;
+                
+                const descriptionElement = document.createElement('div');
+                descriptionElement.className = 'event-description';
+                descriptionElement.textContent = event.description;
+                
+                eventElement.appendChild(dateElement);
+                eventElement.appendChild(titleElement);
+                eventElement.appendChild(descriptionElement);
+                
+                eventElement.addEventListener('click', () => {
+                    openModal(event);
+                });
+                
+                timelineEventsContainer.appendChild(eventElement);
+                
+                // Animation d'apparition progressive
+                setTimeout(() => {
+                    eventElement.classList.add('visible');
+                }, index * 100);
+            });
+        }
+        
+        // Fonction pour filtrer les événements par période
+        function filterEvents(category) {
+            const events = document.querySelectorAll('.timeline-event');
+            
+            if (category === 'all') {
+                events.forEach(event => {
+                    event.style.display = 'block';
+                    setTimeout(() => {
+                        event.classList.add('visible');
+                    }, 100);
+                });
+            } else {
+                events.forEach(event => {
+                    if (event.getAttribute('data-category').replace(' ', '-') === category) {
+                        event.style.display = 'block';
+                        setTimeout(() => {
+                            event.classList.add('visible');
+                        }, 100);
+                    } else {
+                        event.classList.remove('visible');
+                        setTimeout(() => {
+                            event.style.display = 'none';
+                        }, 500);
+                    }
+                });
+            }
+        }
+        
+        // Fonction pour ouvrir la modal avec les détails de l'événement
+        function openModal(event) {
+            const modal = document.getElementById('event-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDate = document.getElementById('modal-date');
+            const modalDescription = document.getElementById('modal-description');
+            const modalCategory = document.getElementById('modal-category');
+            
+            modalTitle.textContent = event.title;
+            modalDate.textContent = formatDate(event.date);
+            modalDescription.textContent = event.description;
+            modalCategory.textContent = event.category;
+            modalCategory.className = `modal-category ${event.category.replace(' ', '-')}`;
+            
+            modal.style.display = 'flex';
+        }
+        
+        // Fonction pour fermer la modal
+        function closeModal() {
+            const modal = document.getElementById('event-modal');
+            modal.style.display = 'none';
+        }
+        
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', () => {
+            // Créer les événements de la timeline
+            createTimelineEvents();
+            
+            // Gestionnaires d'événements pour les filtres
+            document.getElementById('all-periods').addEventListener('click', () => {
+                setActiveButton('all-periods');
+                filterEvents('all');
+            });
+            
+            document.getElementById('prehistoire').addEventListener('click', () => {
+                setActiveButton('prehistoire');
+                filterEvents('Préhistoire');
+            });
+            
+            document.getElementById('antiquite').addEventListener('click', () => {
+                setActiveButton('antiquite');
+                filterEvents('Antiquité');
+            });
+            
+            document.getElementById('moyen-age').addEventListener('click', () => {
+                setActiveButton('moyen-age');
+                filterEvents('Moyen-Âge');
+            });
+            
+            document.getElementById('epoque-moderne').addEventListener('click', () => {
+                setActiveButton('epoque-moderne');
+                filterEvents('Époque-moderne');
+            });
+            
+            document.getElementById('epoque-contemporaine').addEventListener('click', () => {
+                setActiveButton('epoque-contemporaine');
+                filterEvents('Époque-contemporaine');
+            });
+            
+            // Gestionnaire pour fermer la modal
+            document.getElementById('close-modal').addEventListener('click', closeModal);
+            
+            // Fermer la modal en cliquant en dehors
+            window.addEventListener('click', (event) => {
+                const modal = document.getElementById('event-modal');
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            // Zoom et navigation
+            let zoomLevel = 1;
+            const timelineContainer = document.querySelector('.timeline-container');
+            
+            document.getElementById('zoom-in').addEventListener('click', () => {
+                if (zoomLevel < 2) {
+                    zoomLevel += 0.2;
+                    timelineContainer.style.transform = `scale(${zoomLevel})`;
+                }
+            });
+            
+            document.getElementById('zoom-out').addEventListener('click', () => {
+                if (zoomLevel > 0.6) {
+                    zoomLevel -= 0.2;
+                    timelineContainer.style.transform = `scale(${zoomLevel})`;
+                }
+            });
+            
+            document.getElementById('reset-zoom').addEventListener('click', () => {
+                zoomLevel = 1;
+                timelineContainer.style.transform = 'scale(1)';
+            });
+        });
+        
+        // Fonction pour définir le bouton actif
+        function setActiveButton(buttonId) {
+            const buttons = document.querySelectorAll('.timeline-controls button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            document.getElementById(buttonId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
