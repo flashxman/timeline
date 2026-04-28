@@ -231,27 +231,6 @@
             background-color: #3498db;
         }
         
-        /* Zoom et navigation */
-        .zoom-controls {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        
-        .zoom-controls button {
-            padding: 5px 10px;
-            background-color: #2c3e50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin: 0 5px;
-        }
-        
-        .zoom-controls button:hover {
-            background-color: #1a2530;
-        }
-        
         /* Responsive */
         @media (max-width: 768px) {
             .timeline-line {
@@ -387,12 +366,6 @@
             <button id="epoque-contemporaine">Époque contemporaine</button>
         </div>
         
-        <div class="zoom-controls">
-            <button id="zoom-in">Zoom +</button>
-            <button id="zoom-out">Zoom -</button>
-            <button id="reset-zoom">Réinitialiser</button>
-        </div>
-        
         <div class="timeline-container">
             <div class="timeline-line"></div>
             <div class="timeline-events" id="timeline-events">
@@ -512,6 +485,7 @@
   },
   {
     "date": "79",
+    "fullDate": "0079-08-24",
     "title": "Éruption du Vésuve",
     "description": "Éruption du Vésuve, destruction de Pompéi et Herculanum",
     "category": "Antiquité"
@@ -548,18 +522,21 @@
   },
   {
     "date": "732",
+    "fullDate": "0732-10-25",
     "title": "Bataille de Poitiers",
     "description": "Bataille de Poitiers, Charles Martel arrête l'avancée musulmane en Europe",
     "category": "Moyen Âge"
   },
   {
     "date": "800",
+    "fullDate": "0800-12-25",
     "title": "Couronnement de Charlemagne",
     "description": "Couronnement de Charlemagne comme empereur d'Occident par le pape Léon III",
     "category": "Moyen Âge"
   },
   {
     "date": "1066",
+    "fullDate": "1066-10-14",
     "title": "Bataille d'Hastings",
     "description": "Bataille d'Hastings, conquête normande de l'Angleterre par Guillaume le Conquérant",
     "category": "Moyen Âge"
@@ -572,6 +549,7 @@
   },
   {
     "date": "1215",
+    "fullDate": "1215-06-15",
     "title": "Magna Carta",
     "description": "Magna Carta en Angleterre, limitation du pouvoir royal",
     "category": "Moyen Âge"
@@ -584,24 +562,28 @@
   },
   {
     "date": "1429",
+    "fullDate": "1429-05-08",
     "title": "Jeanne d'Arc",
     "description": "Jeanne d'Arc libère Orléans",
     "category": "Moyen Âge"
   },
   {
     "date": "1453",
+    "fullDate": "1453-05-29",
     "title": "Chute de Constantinople",
     "description": "Chute de Constantinople, fin de l'Empire byzantin",
     "category": "Moyen Âge"
   },
   {
     "date": "1492",
+    "fullDate": "1492-10-12",
     "title": "Découverte de l'Amérique",
     "description": "Christophe Colomb atteint l'Amérique",
     "category": "Époque moderne"
   },
   {
     "date": "1517",
+    "fullDate": "1517-10-31",
     "title": "Réforme protestante",
     "description": "Martin Luther affiche ses 95 thèses, début de la Réforme protestante",
     "category": "Époque moderne"
@@ -614,6 +596,7 @@
   },
   {
     "date": "1610",
+    "fullDate": "1610-05-14",
     "title": "Assassinat d'Henri IV",
     "description": "Assassinat d'Henri IV, Louis XIII devient roi de France",
     "category": "Époque moderne"
@@ -638,18 +621,21 @@
   },
   {
     "date": "1776",
+    "fullDate": "1776-07-04",
     "title": "Indépendance des États-Unis",
     "description": "Déclaration d'indépendance des États-Unis",
     "category": "Époque moderne"
   },
   {
     "date": "1789",
+    "fullDate": "1789-07-14",
     "title": "Révolution française",
     "description": "Prise de la Bastille, début de la Révolution française",
     "category": "Époque contemporaine"
   },
   {
     "date": "1804",
+    "fullDate": "1804-12-02",
     "title": "Napoléon empereur",
     "description": "Sacre de Napoléon Ier comme empereur des Français",
     "category": "Époque contemporaine"
@@ -680,6 +666,7 @@
   },
   {
     "date": "1914",
+    "fullDate": "1914-07-28",
     "title": "Première Guerre mondiale",
     "description": "Début de la Première Guerre mondiale",
     "category": "Époque contemporaine"
@@ -698,6 +685,7 @@
   },
   {
     "date": "1939",
+    "fullDate": "1939-09-01",
     "title": "Seconde Guerre mondiale",
     "description": "Début de la Seconde Guerre mondiale",
     "category": "Époque contemporaine"
@@ -728,6 +716,7 @@
   },
   {
     "date": "1989",
+    "fullDate": "1989-11-09",
     "title": "Chute du mur de Berlin",
     "description": "Chute du mur de Berlin",
     "category": "Époque contemporaine"
@@ -739,27 +728,184 @@
     "category": "Époque contemporaine"
   },
   {
+    "date": "1991",
+    "fullDate": "1991-08-06",
+    "title": "World Wide Web",
+    "description": "Tim Berners-Lee rend le World Wide Web accessible au public",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "1994",
+    "fullDate": "1994-04-07",
+    "title": "Génocide au Rwanda",
+    "description": "Génocide au Rwanda : environ 800 000 Tutsis et Hutus modérés massacrés en 100 jours",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "1998",
+    "fullDate": "1998-09-04",
+    "title": "Création de Google",
+    "description": "Fondation de Google par Larry Page et Sergey Brin",
+    "category": "Époque contemporaine"
+  },
+  {
     "date": "2001",
+    "fullDate": "2001-09-11",
     "title": "Attentats du 11 septembre",
-    "description": "Attentats du 11 septembre aux États-Unis",
+    "description": "Attentats du 11 septembre aux États-Unis, déclenchement de la guerre en Afghanistan",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2003",
+    "fullDate": "2003-03-20",
+    "title": "Guerre en Irak",
+    "description": "Invasion de l'Irak par les États-Unis et leurs alliés sous prétexte d'armes de destruction massive",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2004",
+    "fullDate": "2004-02-04",
+    "title": "Création de Facebook",
+    "description": "Mark Zuckerberg crée Facebook depuis sa chambre à Harvard",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2005",
+    "fullDate": "2005-02-14",
+    "title": "Création de YouTube",
+    "description": "Lancement de YouTube, plateforme de partage de vidéos rachetée par Google en 2006",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2007",
+    "fullDate": "2007-01-09",
+    "title": "Lancement de l'iPhone",
+    "description": "Steve Jobs présente le premier iPhone, révolution du téléphone mobile et du numérique",
     "category": "Époque contemporaine"
   },
   {
     "date": "2008",
+    "fullDate": "2008-09-15",
     "title": "Crise financière mondiale",
-    "description": "Crise financière mondiale",
+    "description": "Effondrement de Lehman Brothers, déclenchement de la crise financière mondiale",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2008",
+    "fullDate": "2008-11-04",
+    "title": "Élection de Barack Obama",
+    "description": "Barack Obama élu premier président afro-américain des États-Unis",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2009",
+    "fullDate": "2009-01-03",
+    "title": "Bitcoin",
+    "description": "Satoshi Nakamoto lance le Bitcoin, première cryptomonnaie décentralisée basée sur la blockchain",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2010",
+    "fullDate": "2010-12-17",
+    "title": "Printemps arabe",
+    "description": "Début du Printemps arabe en Tunisie, vague de révolutions dans le monde arabe",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2011",
+    "fullDate": "2011-05-02",
+    "title": "Mort de Ben Laden",
+    "description": "Raid américain au Pakistan, mort d'Oussama Ben Laden, chef d'Al-Qaïda",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2013",
+    "fullDate": "2013-06-05",
+    "title": "Révélations Snowden",
+    "description": "Edward Snowden révèle les programmes de surveillance de masse de la NSA (PRISM)",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2014",
+    "fullDate": "2014-03-18",
+    "title": "Annexion de la Crimée",
+    "description": "Annexion de la Crimée par la Russie, début du conflit dans l'est de l'Ukraine",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2015",
+    "fullDate": "2015-11-13",
+    "title": "Attentats de Paris",
+    "description": "Attentats du 13 novembre à Paris (Bataclan, terrasses) : 130 morts, revendiqués par Daech",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2016",
+    "fullDate": "2016-04-03",
+    "title": "Panama Papers",
+    "description": "Fuite des Panama Papers : 11,5 millions de documents révèlent l'évasion fiscale mondiale via le cabinet Mossack Fonseca",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2016",
+    "fullDate": "2016-06-23",
+    "title": "Brexit",
+    "description": "Le Royaume-Uni vote pour quitter l'Union européenne (51,9 % pour le Brexit)",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2016",
+    "fullDate": "2016-11-08",
+    "title": "Élection de Donald Trump",
+    "description": "Donald Trump élu 45e président des États-Unis, victoire surprise face à Hillary Clinton",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2018",
+    "fullDate": "2018-03-17",
+    "title": "Cambridge Analytica",
+    "description": "Scandale Cambridge Analytica : données de 87 millions d'utilisateurs Facebook exploitées pour influencer les élections",
     "category": "Époque contemporaine"
   },
   {
     "date": "2019",
     "title": "Pandémie de COVID-19",
-    "description": "Début de la pandémie de COVID-19",
+    "description": "Apparition du SARS-CoV-2 à Wuhan (Chine), pandémie mondiale déclarée par l'OMS en mars 2020",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2021",
+    "fullDate": "2021-01-06",
+    "title": "Assaut du Capitole",
+    "description": "Des partisans de Donald Trump prennent d'assaut le Capitole américain pour empêcher la certification de l'élection",
     "category": "Époque contemporaine"
   },
   {
     "date": "2022",
+    "fullDate": "2022-02-24",
     "title": "Invasion de l'Ukraine",
-    "description": "Invasion de l'Ukraine par la Russie",
+    "description": "Invasion à grande échelle de l'Ukraine par la Russie, plus grand conflit armé en Europe depuis 1945",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2022",
+    "fullDate": "2022-11-30",
+    "title": "Lancement de ChatGPT",
+    "description": "OpenAI lance ChatGPT, propulsant l'IA générative dans le grand public avec 100 millions d'utilisateurs en 2 mois",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2023",
+    "fullDate": "2023-10-07",
+    "title": "Guerre à Gaza",
+    "description": "Attaque du Hamas contre Israël le 7 octobre (1 200 morts), déclenchement d'une offensive militaire israélienne à Gaza",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2024",
+    "fullDate": "2024-11-05",
+    "title": "Retour de Donald Trump",
+    "description": "Donald Trump élu 47e président des États-Unis, premier président américain à revenir après une défaite",
     "category": "Époque contemporaine"
   }
 ];
@@ -772,16 +918,41 @@
             } else if (date === 0) {
                 return "An 0";
             } else {
-                return date + " ap. J.-C.";
+                return String(date);
             }
+        }
+
+        function formatFullDate(event) {
+            if (!event.fullDate) return formatDate(event.date);
+            const months = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+            const parts = event.fullDate.split('-');
+            const year = parseInt(event.date);
+            const yearStr = year < 0 ? Math.abs(year) + ' av. J.-C.' : String(year);
+            if (parts.length === 3) {
+                const day = parseInt(parts[2]);
+                const month = months[parseInt(parts[1]) - 1];
+                return `${day} ${month} ${yearStr}`;
+            }
+            if (parts.length === 2) {
+                const month = months[parseInt(parts[1]) - 1];
+                return `${month} ${yearStr}`;
+            }
+            return yearStr;
         }
         
         // Fonction pour créer les éléments de la timeline
         function createTimelineEvents() {
             const timelineEventsContainer = document.getElementById('timeline-events');
             timelineEventsContainer.innerHTML = '';
-            
-            timelineEvents.forEach((event, index) => {
+
+            const sorted = [...timelineEvents].sort((a, b) => {
+                const yearA = parseInt(a.date), yearB = parseInt(b.date);
+                if (yearA !== yearB) return yearA - yearB;
+                if (a.fullDate && b.fullDate) return a.fullDate.localeCompare(b.fullDate);
+                return a.fullDate ? -1 : b.fullDate ? 1 : 0;
+            });
+
+            sorted.forEach((event, index) => {
                 const eventElement = document.createElement('div');
                 eventElement.className = `timeline-event ${event.category.replace(' ', '-')}`;
                 eventElement.setAttribute('data-category', event.category);
@@ -853,7 +1024,7 @@
             const modalCategory = document.getElementById('modal-category');
             
             modalTitle.textContent = event.title;
-            modalDate.textContent = formatDate(event.date);
+            modalDate.textContent = formatFullDate(event);
             modalDescription.textContent = event.description;
             modalCategory.textContent = event.category;
             modalCategory.className = `modal-category ${event.category.replace(' ', '-')}`;
@@ -914,28 +1085,6 @@
                 }
             });
             
-            // Zoom et navigation
-            let zoomLevel = 1;
-            const timelineContainer = document.querySelector('.timeline-container');
-            
-            document.getElementById('zoom-in').addEventListener('click', () => {
-                if (zoomLevel < 2) {
-                    zoomLevel += 0.2;
-                    timelineContainer.style.transform = `scale(${zoomLevel})`;
-                }
-            });
-            
-            document.getElementById('zoom-out').addEventListener('click', () => {
-                if (zoomLevel > 0.6) {
-                    zoomLevel -= 0.2;
-                    timelineContainer.style.transform = `scale(${zoomLevel})`;
-                }
-            });
-            
-            document.getElementById('reset-zoom').addEventListener('click', () => {
-                zoomLevel = 1;
-                timelineContainer.style.transform = 'scale(1)';
-            });
         });
         
         // Fonction pour définir le bouton actif

@@ -324,27 +324,159 @@
     "category": "Époque contemporaine"
   },
   {
+    "date": "1991",
+    "title": "World Wide Web",
+    "description": "Tim Berners-Lee rend le World Wide Web accessible au public",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "1994",
+    "title": "Génocide au Rwanda",
+    "description": "Génocide au Rwanda : environ 800 000 Tutsis et Hutus modérés massacrés en 100 jours",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "1998",
+    "title": "Création de Google",
+    "description": "Fondation de Google par Larry Page et Sergey Brin",
+    "category": "Époque contemporaine"
+  },
+  {
     "date": "2001",
     "title": "Attentats du 11 septembre",
-    "description": "Attentats du 11 septembre aux États-Unis",
+    "description": "Attentats du 11 septembre aux États-Unis, déclenchement de la guerre en Afghanistan",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2003",
+    "title": "Guerre en Irak",
+    "description": "Invasion de l'Irak par les États-Unis et leurs alliés sous prétexte d'armes de destruction massive",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2004",
+    "title": "Création de Facebook",
+    "description": "Mark Zuckerberg crée Facebook depuis sa chambre à Harvard",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2005",
+    "title": "Création de YouTube",
+    "description": "Lancement de YouTube, plateforme de partage de vidéos rachetée par Google en 2006",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2007",
+    "title": "Lancement de l'iPhone",
+    "description": "Steve Jobs présente le premier iPhone, révolution du téléphone mobile et du numérique",
     "category": "Époque contemporaine"
   },
   {
     "date": "2008",
     "title": "Crise financière mondiale",
-    "description": "Crise financière mondiale",
+    "description": "Effondrement de Lehman Brothers, déclenchement de la crise financière mondiale",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2008",
+    "title": "Élection de Barack Obama",
+    "description": "Barack Obama élu premier président afro-américain des États-Unis",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2009",
+    "title": "Bitcoin",
+    "description": "Satoshi Nakamoto lance le Bitcoin, première cryptomonnaie décentralisée basée sur la blockchain",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2010",
+    "title": "Printemps arabe",
+    "description": "Début du Printemps arabe en Tunisie, vague de révolutions dans le monde arabe",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2011",
+    "title": "Mort de Ben Laden",
+    "description": "Raid américain au Pakistan, mort d'Oussama Ben Laden, chef d'Al-Qaïda",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2013",
+    "title": "Révélations Snowden",
+    "description": "Edward Snowden révèle les programmes de surveillance de masse de la NSA (PRISM)",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2014",
+    "title": "Annexion de la Crimée",
+    "description": "Annexion de la Crimée par la Russie, début du conflit dans l'est de l'Ukraine",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2015",
+    "title": "Attentats de Paris",
+    "description": "Attentats du 13 novembre à Paris (Bataclan, terrasses) : 130 morts, revendiqués par Daech",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2016",
+    "title": "Panama Papers",
+    "description": "Fuite des Panama Papers : 11,5 millions de documents révèlent l'évasion fiscale mondiale via le cabinet Mossack Fonseca",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2016",
+    "title": "Brexit",
+    "description": "Le Royaume-Uni vote pour quitter l'Union européenne (51,9 % pour le Brexit)",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2016",
+    "title": "Élection de Donald Trump",
+    "description": "Donald Trump élu 45e président des États-Unis, victoire surprise face à Hillary Clinton",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2018",
+    "title": "Cambridge Analytica",
+    "description": "Scandale Cambridge Analytica : données de 87 millions d'utilisateurs Facebook exploitées pour influencer les élections",
     "category": "Époque contemporaine"
   },
   {
     "date": "2019",
     "title": "Pandémie de COVID-19",
-    "description": "Début de la pandémie de COVID-19",
+    "description": "Apparition du SARS-CoV-2 à Wuhan (Chine), pandémie mondiale déclarée par l'OMS en mars 2020",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2021",
+    "title": "Assaut du Capitole",
+    "description": "Des partisans de Donald Trump prennent d'assaut le Capitole américain pour empêcher la certification de l'élection",
     "category": "Époque contemporaine"
   },
   {
     "date": "2022",
     "title": "Invasion de l'Ukraine",
-    "description": "Invasion de l'Ukraine par la Russie",
+    "description": "Invasion à grande échelle de l'Ukraine par la Russie, plus grand conflit armé en Europe depuis 1945",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2022",
+    "title": "Lancement de ChatGPT",
+    "description": "OpenAI lance ChatGPT, propulsant l'IA générative dans le grand public avec 100 millions d'utilisateurs en 2 mois",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2023",
+    "title": "Guerre à Gaza",
+    "description": "Attaque du Hamas contre Israël le 7 octobre (1 200 morts), déclenchement d'une offensive militaire israélienne à Gaza",
+    "category": "Époque contemporaine"
+  },
+  {
+    "date": "2024",
+    "title": "Retour de Donald Trump",
+    "description": "Donald Trump élu 47e président des États-Unis, premier président américain à revenir après une défaite",
     "category": "Époque contemporaine"
   }
 ]
