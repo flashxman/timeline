@@ -125,11 +125,11 @@
         }
         
         .timeline-event:nth-child(odd):before {
-            left: -10px;
+            left: -15px;
         }
         
         .timeline-event:nth-child(even):before {
-            right: -10px;
+            right: -14px;
         }
         
         .event-date {
@@ -239,7 +239,7 @@
             
             .timeline-event:nth-child(odd),
             .timeline-event:nth-child(even) {
-                margin-left: 60px;
+                margin-left: 30px;
                 padding-left: 20px;
                 margin-right: 0;
                 padding-right: 0;
@@ -248,7 +248,7 @@
             
             .timeline-event:nth-child(odd):before,
             .timeline-event:nth-child(even):before {
-                left: -10px;
+                left: -15px;
                 right: auto;
             }
         }
@@ -306,6 +306,14 @@
             font-size: 0.8rem;
         }
         
+        .modal-link {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: #3498db;
+            word-break: break-all;
+        }
+
         .modal-category.Préhistoire {
             background-color: #e74c3c;
         }
@@ -381,6 +389,7 @@
             <div class="modal-date" id="modal-date"></div>
             <div class="modal-description" id="modal-description"></div>
             <div class="modal-category" id="modal-category"></div>
+            <a class="modal-link" id="modal-link" target="_blank" rel="noopener noreferrer"></a>
         </div>
     </div>
     
@@ -742,6 +751,14 @@
     "category": "Époque contemporaine"
   },
   {
+    "date": "1997",
+    "fullDate": "1997-05-11",
+    "title": "Deep Blue contre Kasparov",
+    "description": "Garry Kasparov perd la dernière partie de son match contre l'ordinateur Deep Blue. Un tremblement de terre, qui a fait brutalement prendre conscience aux humains qu'une nouvelle ère débutait.",
+    "link":"https://fr.wikipedia.org/wiki/Matchs_Deep_Blue_contre_Kasparov",
+    "category": "Époque contemporaine"
+  },
+  {
     "date": "1998",
     "fullDate": "1998-09-04",
     "title": "Création de Google",
@@ -1028,7 +1045,16 @@
             modalDescription.textContent = event.description;
             modalCategory.textContent = event.category;
             modalCategory.className = `modal-category ${event.category.replace(' ', '-')}`;
-            
+
+            const modalLink = document.getElementById('modal-link');
+            if (event.link) {
+                modalLink.href = event.link;
+                modalLink.textContent = event.link;
+                modalLink.style.display = 'block';
+            } else {
+                modalLink.style.display = 'none';
+            }
+
             modal.style.display = 'flex';
         }
         
